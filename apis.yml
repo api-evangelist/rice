@@ -1,0 +1,109 @@
+---
+aid: rice
+name: Rice University
+description: >-
+  Rice University is a private research university in Houston, Texas, ranked
+  #141 in the QS World University Rankings 2025. Its public developer/API
+  footprint is modest and centered on the library's Rice Research Repository
+  (R-3), a DSpace 9.x platform that exposes both a REST API and an OAI-PMH
+  metadata interface for harvesting theses, dissertations, and scholarship.
+  Rice also operates a Shibboleth/SAML identity provider for federated single
+  sign-on and publishes a public course schedule. There is an official
+  "RiceUniversity" GitHub organization, but it currently has no public
+  repositories. No general-purpose, publicly documented developer portal was
+  found.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/rice/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Library
+  - Open Repository
+  - United States
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: rice:repository-rest
+    name: Rice Research Repository REST API
+    description: >-
+      DSpace 9.x REST API for the Rice Research Repository (R-3), Fondren
+      Library's institutional repository. The API root advertises HAL links to
+      communities, collections, items, bitstreams, and discovery endpoints.
+      Verified live at the /server/api root (DSpace 9.3-SNAPSHOT).
+    humanURL: https://repository.rice.edu/
+    baseURL: https://repository.rice.edu/server/api
+    tags: [ Repository, DSpace, Research, Library, Scholarship, REST ]
+    properties:
+      - type: Documentation
+        url: https://repository.rice.edu/server/api
+      - type: Website
+        url: https://repository.rice.edu/
+  - aid: rice:repository-oai
+    name: Rice Research Repository OAI-PMH
+    description: >-
+      OAI-PMH 2.0 metadata harvesting endpoint for the Rice Research Repository.
+      The Identify verb returns repositoryName "Rice Research Repository" with
+      an earliest datestamp of 2005. Supports standard OAI-PMH verbs including
+      Identify, ListMetadataFormats, ListRecords, and ListSets.
+    humanURL: https://library.rice.edu/services/sharing-research-data-rice-digital-scholarship-archive
+    baseURL: https://repository.rice.edu/server/oai/request
+    tags: [ Repository, OAI-PMH, Metadata, Harvesting, Research, Library ]
+    properties:
+      - type: Documentation
+        url: https://repository.rice.edu/server/oai/request?verb=Identify
+  - aid: rice:sso-shibboleth
+    name: Rice Shibboleth SAML Identity Provider
+    description: >-
+      Rice University Shibboleth/SAML 2.0 identity provider used for federated
+      single sign-on. The IdP publishes SAML metadata (EntityDescriptor with
+      IDPSSODescriptor) at its shibboleth metadata URL. Access to protected
+      services requires institutional credentials.
+    humanURL: https://idp.rice.edu/idp/shibboleth
+    tags: [ Identity, SSO, SAML, Shibboleth, Authentication ]
+    properties:
+      - type: Documentation
+        url: https://idp.rice.edu/idp/shibboleth
+  - aid: rice:course-schedule
+    name: Rice University Course Schedule
+    description: >-
+      Public course catalog and schedule search at courses.rice.edu, exposing
+      term, subject, and catalog query parameters via the SWKSCAT endpoint. It
+      is a web query interface rather than a formally documented REST/JSON API,
+      but returns structured course data including CRN, meeting times, and
+      credits.
+    humanURL: https://courses.rice.edu/
+    baseURL: https://courses.rice.edu/admweb/!SWKSCAT.cat
+    tags: [ Courses, Catalog, Registrar, Schedule, Education ]
+    properties:
+      - type: Documentation
+        url: https://registrar.rice.edu/students/courses
+      - type: Website
+        url: https://courses.rice.edu/
+common:
+  - type: Website
+    url: https://www.rice.edu/
+  - type: GitHub
+    url: https://github.com/RiceUniversity
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/rice-university/
+  - type: Status
+    url: https://status.rice.edu/
+  - type: Authentication
+    url: https://idp.rice.edu/idp/shibboleth
+  - type: Plans
+    url: plans/rice-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/rice-rate-limits.yml
+  - type: FinOps
+    url: finops/rice-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
