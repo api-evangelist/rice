@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "rice": "https://repository.rice.edu/server/api/",
+    "dspace": "https://repository.rice.edu/server/api/",
+    "oai": "http://www.openarchives.org/OAI/2.0/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "name": "name",
+    "url": "url",
+    "description": "description",
+    "sameAs": "sameAs",
+    "identifier": "identifier",
+
+    "CollegeOrUniversity": "CollegeOrUniversity",
+    "EducationalOrganization": "EducationalOrganization",
+
+    "repository": {
+      "@id": "rice:repository",
+      "@type": "@id"
+    },
+    "community": {
+      "@id": "dspace:communities"
+    },
+    "collection": {
+      "@id": "dspace:collections"
+    },
+    "item": {
+      "@id": "dspace:items"
+    },
+    "bitstream": {
+      "@id": "dspace:bitstreams"
+    },
+    "title": "dc:title",
+    "creator": "dc:creator",
+    "subject": "dc:subject",
+    "issued": "dcterms:issued",
+    "abstract": "dcterms:abstract",
+    "handle": "identifier"
+  },
+  "@type": "CollegeOrUniversity",
+  "@id": "https://www.rice.edu/",
+  "name": "Rice University",
+  "url": "https://www.rice.edu/",
+  "description": "Rice University is a private research university in Houston, Texas. Its public developer footprint centers on the Rice Research Repository (R-3), a DSpace 9.x platform exposing a HAL+JSON REST API and an OAI-PMH metadata interface, plus a Shibboleth/SAML identity provider and a public course schedule.",
+  "sameAs": [
+    "https://github.com/RiceUniversity",
+    "https://www.linkedin.com/school/rice-university/",
+    "https://repository.rice.edu/",
+    "https://courses.rice.edu/",
+    "https://idp.rice.edu/idp/shibboleth"
+  ]
+}

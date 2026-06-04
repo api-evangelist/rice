@@ -1,0 +1,14 @@
+{
+  "repo": "rice",
+  "feeds": [
+    {
+      "source": "https://news.rice.edu/",
+      "feed_url": "https://news.rice.edu/",
+      "title": "Rice News",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-03T00:00:00Z"
+}
