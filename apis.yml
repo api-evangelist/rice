@@ -86,6 +86,8 @@ apis:
       - type: Website
         url: https://courses.rice.edu/
 common:
+  - type: DomainSecurity
+    url: security/rice-domain-security.yml
   - type: Website
     url: https://www.rice.edu/
   - type: GitHub
