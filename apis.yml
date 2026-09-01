@@ -1,126 +1,336 @@
 ---
 aid: rice
 name: Rice University
+x-type: university
+x-category: Private Research University
 description: >-
-  Rice University is a private research university in Houston, Texas, ranked
-  #141 in the QS World University Rankings 2025. Its public developer/API
-  footprint is modest and centered on the library's Rice Research Repository
-  (R-3), a DSpace 9.x platform that exposes both a REST API and an OAI-PMH
-  metadata interface for harvesting theses, dissertations, and scholarship.
-  Rice also operates a Shibboleth/SAML identity provider for federated single
-  sign-on and publishes a public course schedule. There is an official
-  "RiceUniversity" GitHub organization, but it currently has no public
-  repositories. No general-purpose, publicly documented developer portal was
-  found.
+  Rice University is a private research university in Houston, Texas. Its programmable
+  footprint is small, and most of what appears to be Rice's is not: the Rice Research
+  Repository at repository.rice.edu is a CNAME to rice.dspacedirect.org and runs on
+  DSpaceDirect, the Lyrasis-hosted DSpace service, so its REST and OAI-PMH contracts are the
+  platform's engineering on Rice's content, recorded here as a tenancy rather than credited to
+  Rice. What Rice genuinely operates is three things. It runs its own Shibboleth/SAML 2.0
+  identity provider at idp.rice.edu, on Rice's own ARIN allocation behind an InCommon-issued
+  certificate, and registers it in the InCommon federation — the strongest machine-readable
+  contract on Rice's public surface. It is a direct DataCite member (symbol RICE, eight
+  prefixes, 2,169 DOIs) through Fondren Library. And its Kinder Institute for Urban Research
+  operates the Urban Data Platform, a genuinely public, unauthenticated JSON API serving a
+  431-dataset Houston-region urban data catalog with its own controlled vocabularies and
+  DataCite DOIs — undocumented, unadvertised, and the only self-operated callable API Rice has.
+  There is no central developer portal, no llms.txt, no .well-known catalog, and the official
+  RiceUniversity GitHub organization has zero public repositories; Rice's Center for Research
+  Computing publishes separately at github.com/rice-crc.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
-  callable_host: false
+  commercial: false
+  callable_host: true
   label: Hosted service · you call their endpoint
   confidence: medium
   source:
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - probed
+  generated: '2026-09-01'
+  method: probed
 accessModel:
   pricing: free
   onboarding: unknown
   trial: false
   try_now: false
-  public: false
+  public: true
   label: Free
   confidence: medium
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - probed
+  generated: '2026-09-01'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rice.png
 url: https://raw.githubusercontent.com/api-evangelist/rice/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
-  - Research
-  - Library
-  - Open Repository
+  - Higher Education
+  - Education
   - United States
+  - Texas
+  - Private Research University
+  - Association of American Universities
+  - Research Data
+  - Open Data
+  - Research Repository
+  - Course Catalog
+  - Identity Federation
+  - Library
+  - Urban Research
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Rice's public surface was probed end to end on 2026-09-01 and one genuinely
+    institution-operated, publicly callable API was found and described: the Kinder Institute
+    Urban Data Platform. Operator was settled by DNS, ARIN and TLS resolution rather than by
+    hostname, which changed the answer in both directions — it promoted the Kinder platform
+    (an AWS host, no rice.edu name, but Rice's own engineering, endorsed from kinder.rice.edu
+    and minting DOIs on Rice's DataCite prefix) and it demoted the research repository (a
+    rice.edu name, but a DSpaceDirect/Lyrasis tenancy). Rice publishes no developer portal, no
+    OpenAPI, no llms.txt and no .well-known catalog, and its official GitHub organization is
+    empty; the OpenAPI in this repo is ours, written from live probes and marked as such.
+  evidence:
+  - url: https://lg4tooqkr1.execute-api.us-east-1.amazonaws.com/prod/datasets
+    status: 200
+    note: 431-dataset public catalog, unauthenticated, access-control-allow-origin *.
+  - url: https://lg4tooqkr1.execute-api.us-east-1.amazonaws.com/prod/lookups
+    status: 200
+    note: 27 controlled vocabularies served by the platform itself.
+  - url: https://idp.rice.edu/idp/shibboleth
+    status: 200
+    note: SAML 2.0 EntityDescriptor on Rice's own ARIN allocation (128.42.207.19, RICENET).
+  - url: https://mdq.incommon.org/entities/%7Bsha1%7D6353fefaff3eca405b039ff0391042ae469fc046
+    status: 200
+    note: InCommon-signed metadata, registrationAuthority https://incommon.org.
+  - url: https://api.datacite.org/providers/rice
+    status: 200
+    note: 'DataCite direct member: Fondren Library, Rice University; ROR https://ror.org/008zs3103.'
+  - url: https://repository.rice.edu/server/api
+    status: 200
+    note: >-
+      DSpace 9.3 HAL root. Host CNAMEs to rice.dspacedirect.org and shares dspacedirect.org's
+      three IPs — tenant, not institution.
+  - url: https://repository.rice.edu/server/oai/request?verb=Identify
+    status: 200
+    note: OAI-PMH 2.0, repositoryName "Rice Research Repository", adminEmail cds@rice.edu.
+  - url: https://courses.rice.edu/admweb/!SWKSCAT.cat
+    status: 200
+    note: Ellucian Banner schedule search on Rice's own host (128.42.207.157, RICENET).
+  - url: https://api.github.com/orgs/RiceUniversity
+    status: 200
+    note: public_repos = 0. The official organization publishes nothing.
+  - url: https://www.rice.edu/llms.txt
+    status: 406
+    note: >-
+      Absent, not blocked. 406 is this Drupal estate's not-found; robots.txt and sitemap.xml
+      return 200 to the same client.
+  - url: https://www.rice.edu/.well-known/apis.json
+    status: 406
+    note: Absent, same not-found behaviour.
 apis:
-  - aid: rice:repository-rest
-    name: Rice Research Repository REST API
+  - aid: rice:kinder-udp
+    name: Rice Kinder Institute Urban Data Platform API
+    x-operator: institution
     description: >-
-      DSpace 9.x REST API for the Rice Research Repository (R-3), Fondren
-      Library's institutional repository. The API root advertises HAL links to
-      communities, collections, items, bitstreams, and discovery endpoints.
-      Verified live at the /server/api root (DSpace 9.3-SNAPSHOT).
-    humanURL: https://repository.rice.edu/
-    baseURL: https://repository.rice.edu/server/api
-    tags: [ Repository, DSpace, Research, Library, Scholarship, REST ]
+      The only publicly callable API Rice University itself operates. Serves the Kinder
+      Institute for Urban Research's Urban Data Platform: a 431-dataset catalog of Houston and
+      Harris County urban data across fourteen subject categories, with 27 controlled
+      vocabularies, DataCite DOIs under Rice's own 10.25612 prefix, and typed inter-dataset
+      relations drawn from the DataCite RelationType vocabulary. Reads are anonymous and
+      CORS-open; a member-scoped catalog sits behind an undocumented authorizer. Rice publishes
+      no documentation, no OpenAPI and no developer portal for it — the description in this
+      repository was written from live probes on 2026-09-01 and is marked `method: probed`.
+      Operator is institution despite the AWS hostname: the API's own suggestedCitation field
+      names "Rice University-Kinder Institute: UDP", kinder.rice.edu endorses and links the
+      platform, and its DOIs resolve to DataCite client RICE.KINDER under member `rice`.
+    humanURL: https://kinder.rice.edu/initiative/urban-data-platform
+    baseURL: https://lg4tooqkr1.execute-api.us-east-1.amazonaws.com/prod
+    tags: [ Open Data, Urban Research, Research Data, Datasets, Geospatial, Houston, REST, JSON ]
     properties:
-      - type: Documentation
-        url: https://repository.rice.edu/server/api
+      - type: OpenAPI
+        url: openapi/rice-kinder-udp-openapi.yml
+      - type: JSONSchema
+        url: json-schema/rice-kinder-udp-dataset-schema.json
+      - type: Vocabulary
+        url: vocabulary/rice-kinder-udp-vocabulary.yml
+      - type: Examples
+        url: examples/rice-kinder-udp-datasets-example.json
+      - type: Examples
+        url: examples/rice-kinder-udp-dataset-detail-example.json
+      - type: Examples
+        url: examples/rice-kinder-udp-lookups-example.json
+      - type: Errors
+        url: errors/rice-errors.yml
+      - type: Authentication
+        url: authentication/rice-authentication.yml
       - type: Website
-        url: https://repository.rice.edu/
-  - aid: rice:repository-oai
-    name: Rice Research Repository OAI-PMH
-    description: >-
-      OAI-PMH 2.0 metadata harvesting endpoint for the Rice Research Repository.
-      The Identify verb returns repositoryName "Rice Research Repository" with
-      an earliest datestamp of 2005. Supports standard OAI-PMH verbs including
-      Identify, ListMetadataFormats, ListRecords, and ListSets.
-    humanURL: https://library.rice.edu/services/sharing-research-data-rice-digital-scholarship-archive
-    baseURL: https://repository.rice.edu/server/oai/request
-    tags: [ Repository, OAI-PMH, Metadata, Harvesting, Research, Library ]
-    properties:
+        url: https://www.kinderudp.org/
       - type: Documentation
-        url: https://repository.rice.edu/server/oai/request?verb=Identify
+        url: https://kinder.rice.edu/initiative/urban-data-platform
   - aid: rice:sso-shibboleth
-    name: Rice Shibboleth SAML Identity Provider
+    name: Rice Shibboleth SAML 2.0 Identity Provider
+    x-operator: institution
     description: >-
-      Rice University Shibboleth/SAML 2.0 identity provider used for federated
-      single sign-on. The IdP publishes SAML metadata (EntityDescriptor with
-      IDPSSODescriptor) at its shibboleth metadata URL. Access to protected
-      services requires institutional credentials.
+      Rice University's own Shibboleth/SAML 2.0 identity provider, publishing a live
+      EntityDescriptor with an IDPSSODescriptor, a shibmd:Scope of rice.edu and support for
+      SAML 1.1, SAML 2.0 and the Shibboleth 1.0 protocol. Operator was settled by
+      infrastructure, not hostname: idp.rice.edu resolves to 128.42.207.19 on Rice's own
+      RICENET allocation, behind a certificate issued to William Marsh Rice University by
+      Internet2's InCommon CA. This is Rice's engineering and the strongest machine-readable
+      contract on its public surface.
     humanURL: https://idp.rice.edu/idp/shibboleth
-    tags: [ Identity, SSO, SAML, Shibboleth, Authentication ]
+    baseURL: https://idp.rice.edu/idp/shibboleth
+    tags: [ Identity, SSO, SAML, Shibboleth, Authentication, Federation ]
     properties:
       - type: Documentation
         url: https://idp.rice.edu/idp/shibboleth
-  - aid: rice:course-schedule
-    name: Rice University Course Schedule
+      - type: IdentityFederation
+        url: identity-federation/rice-identity-federation.yml
+      - type: Authentication
+        url: authentication/rice-authentication.yml
+      - type: Conformance
+        url: conformance/rice-education-standards-conformance.yml
+  - aid: rice:incommon-federation
+    name: InCommon Federation registration
+    x-operator: federation
     description: >-
-      Public course catalog and schedule search at courses.rice.edu, exposing
-      term, subject, and catalog query parameters via the SWKSCAT endpoint. It
-      is a web query interface rather than a formally documented REST/JSON API,
-      but returns structured course data including CRN, meeting times, and
-      credits.
-    humanURL: https://courses.rice.edu/
-    baseURL: https://courses.rice.edu/admweb/!SWKSCAT.cat
-    tags: [ Courses, Catalog, Registrar, Schedule, Education ]
+      Rice's identity provider is registered in InCommon, the US research and education
+      identity federation, and InCommon's metadata query service returns a signed
+      EntityDescriptor for entityID https://idp.rice.edu/idp/shibboleth with
+      registrationAuthority https://incommon.org. A federation is shared by definition; the
+      entity inside it is Rice's, and this membership is what makes Rice's IdP usable by every
+      other InCommon participant. Recorded as a relationship, never as Rice's contract.
+    humanURL: https://spaces.at.internet2.edu/spaces/federation/overview
+    baseURL: https://mdq.incommon.org/
+    tags: [ Identity Federation, InCommon, SAML, Metadata, Higher Education ]
+    properties:
+      - type: IdentityFederation
+        url: identity-federation/rice-identity-federation.yml
+      - type: Documentation
+        url: https://mdq.incommon.org/entities/%7Bsha1%7D6353fefaff3eca405b039ff0391042ae469fc046
+  - aid: rice:datacite
+    name: DataCite membership — Fondren Library, Rice University
+    x-operator: registry
+    description: >-
+      Rice University is a DataCite direct member, registered 2017-11-13 as provider `rice`
+      (symbol RICE) under Fondren Library and linked to ROR https://ror.org/008zs3103. The
+      membership carries eight DOI prefixes (10.25611 through 10.25618) and 2,169 registered
+      DOIs across three repositories: Fondren Library (rice.fondren), the Kinder Institute
+      Urban Data Platform (rice.kinder) and the Children's Environmental Health Initiative
+      (rice.cehi). This is a fact about Rice, not a Rice contract — DataCite's own API is
+      never saved here, and the membership is never deleted to tidy a shared host.
+    humanURL: https://library.rice.edu/
+    baseURL: https://api.datacite.org/providers/rice
+    tags: [ DataCite, DOI, Persistent Identifiers, Registry, Research Data, Membership ]
+    properties:
+      - type: Conformance
+        url: conformance/rice-education-standards-conformance.yml
+      - type: Documentation
+        url: https://api.datacite.org/providers/rice
+  - aid: rice:ror
+    name: ROR registration — Rice University
+    x-operator: registry
+    description: >-
+      Rice University's entry in the Research Organization Registry, ROR ID
+      https://ror.org/008zs3103. It is the identifier DataCite's member record for Fondren
+      Library points at, and the canonical machine-readable identity for the institution
+      across the research-data ecosystem. A registry membership, recorded as a relationship.
+    humanURL: https://ror.org/008zs3103
+    baseURL: https://api.ror.org/v2/organizations/008zs3103
+    tags: [ ROR, Registry, Persistent Identifiers, Research Organization, Membership ]
     properties:
       - type: Documentation
-        url: https://registrar.rice.edu/students/courses
+        url: https://ror.org/008zs3103
+  - aid: rice:course-schedule
+    name: Rice University Course Schedule
+    x-operator: institution
+    description: >-
+      Rice's public course catalog and schedule search, served from courses.rice.edu on Rice's
+      own network (128.42.207.157, RICENET). It is an Ellucian Banner self-service interface
+      (SWKSCAT) with a Rice-authored XSL layer, taking term, subject, department, school, CRN
+      and keyword parameters and returning XHTML carrying a Rice-specific XML namespace
+      (urn:edu.rice.adminsystems.stud…) rather than JSON. Rice runs the deployment, so the
+      operator is institution — but this is a queryable web interface, not a documented API,
+      and no contract is claimed for it.
+    humanURL: https://courses.rice.edu/
+    baseURL: https://courses.rice.edu/admweb/!SWKSCAT.cat
+    tags: [ Course Catalog, Registrar, Schedule, Banner, Education ]
+    properties:
       - type: Website
         url: https://courses.rice.edu/
+      - type: Errors
+        url: errors/rice-errors.yml
+  - aid: rice:repository-rest
+    name: Rice Research Repository (DSpaceDirect tenancy) — REST API
+    x-operator: tenant
+    description: >-
+      The Rice Research Repository (R-3) is Fondren Library's institutional repository, holding
+      Rice theses, dissertations and scholarship back to 2005 and minting DOIs on Rice's own
+      DataCite prefixes. The repository, its content and its curation are Rice's. The software
+      and the contract are not: repository.rice.edu is a CNAME to rice.dspacedirect.org and
+      resolves to the same three addresses as dspacedirect.org, behind a platform-provisioned
+      Let's Encrypt certificate — it is a DSpaceDirect (Lyrasis) tenancy running DSpace 9.3.
+      The tenancy is recorded here because it is a real institutional fact; the DSpace REST
+      contract is deliberately NOT saved under Rice, and belongs to DSpace's own catalog entry.
+    humanURL: https://repository.rice.edu/
+    baseURL: https://repository.rice.edu/server/api
+    tags: [ Research Repository, DSpace, DSpaceDirect, Lyrasis, Library, Scholarship, Tenant ]
+    properties:
+      - type: Website
+        url: https://repository.rice.edu/
+      - type: Examples
+        url: examples/rice-repository-dspace-root-example.json
+      - type: Errors
+        url: errors/rice-errors.yml
+  - aid: rice:repository-oai
+    name: Rice Research Repository (DSpaceDirect tenancy) — OAI-PMH
+    x-operator: tenant
+    description: >-
+      OAI-PMH 2.0 harvesting endpoint for the Rice Research Repository. Identify returns
+      repositoryName "Rice Research Repository", repositoryIdentifier repository.rice.edu,
+      adminEmail cds@rice.edu (Rice's Center for Digital Scholarship) and an earliest datestamp
+      of 2005-07-25; ListMetadataFormats returns thirteen prefixes including oai_dc, etdms,
+      mods, marc, mets, ore, qdc, rioxx and xoai. The harvestable metadata is Rice's. The
+      OAI-PMH implementation serving it is DSpace's, on DSpaceDirect infrastructure, so the
+      protocol conformance is recorded as tenant-operated in conformance/ and is not credited
+      to Rice.
+    humanURL: https://library.rice.edu/services/sharing-research-data-rice-digital-scholarship-archive
+    baseURL: https://repository.rice.edu/server/oai/request
+    tags: [ OAI-PMH, Metadata, Harvesting, Research Repository, Library, Tenant ]
+    properties:
+      - type: Documentation
+        url: https://repository.rice.edu/server/oai/request?verb=Identify
+      - type: Conformance
+        url: conformance/rice-education-standards-conformance.yml
 common:
-  - type: DomainSecurity
-    url: security/rice-domain-security.yml
   - type: Website
     url: https://www.rice.edu/
+  - type: OpenData
+    url: https://www.kinderudp.org/
+  - type: APIReference
+    url: openapi/rice-kinder-udp-openapi.yml
+  - type: ResearchRepository
+    url: https://repository.rice.edu/
+  - type: LibraryCatalog
+    url: https://library.rice.edu/
+  - type: CourseCatalog
+    url: https://courses.rice.edu/
+  - type: IdentityFederation
+    url: identity-federation/rice-identity-federation.yml
+  - type: ResearchComputing
+    url: https://researchcomputing.rice.edu/
+  - type: GitHubOrganization
+    url: https://github.com/rice-crc
   - type: GitHub
     url: https://github.com/RiceUniversity
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/rice-university/
+  - type: Authentication
+    url: authentication/rice-authentication.yml
+  - type: Conformance
+    url: conformance/rice-education-standards-conformance.yml
+  - type: Errors
+    url: errors/rice-errors.yml
+  - type: PrivacyPolicy
+    url: https://www.rice.edu/privacy
+  - type: TermsOfService
+    url: https://policy.rice.edu/808
+  - type: Support
+    url: https://kb.rice.edu/
   - type: Status
     url: https://status.rice.edu/
-  - type: Authentication
-    url: https://idp.rice.edu/idp/shibboleth
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/rice-university/
+  - type: DomainSecurity
+    url: security/rice-domain-security.yml
   - type: Plans
     url: plans/rice-plans-pricing.yml
   - type: RateLimits
