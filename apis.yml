@@ -349,7 +349,7 @@ common:
   - type: OpenData
     url: https://www.kinderudp.org/
   - type: APIReference
-    url: openapi/rice-kinder-udp-openapi.yml
+    url: openapi/_original/rice-kinder-udp-openapi.yml
   - type: ResearchRepository
     url: https://repository.rice.edu/
   - type: LibraryCatalog
