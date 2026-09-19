@@ -254,6 +254,14 @@ apis:
   - Lyrasis
   - Library
   - Scholarship
+  - Tenants
+  tags_raw:
+  - Research Repository
+  - DSpace
+  - DSpaceDirect
+  - Lyrasis
+  - Library
+  - Scholarship
   - Tenant
   properties:
   - type: Website
@@ -276,6 +284,13 @@ apis:
   humanURL: https://library.rice.edu/services/sharing-research-data-rice-digital-scholarship-archive
   baseURL: https://repository.rice.edu/server/oai/request
   tags:
+  - OAI-PMH
+  - Metadata
+  - Harvesting
+  - Research Repository
+  - Library
+  - Tenants
+  tags_raw:
   - OAI-PMH
   - Metadata
   - Harvesting
