@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+    ID="_157993c6-884f-4d98-9fe2-2c1581a8ca9d"
+    entityID="https://idp.rice.edu/idp/shibboleth">
+  <IDPSSODescriptor protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <shibmd:Scope xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" regexp="false">rice.edu</shibmd:Scope>
+      <mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+        <mdui:DisplayName xml:lang="en">Rice University</mdui:DisplayName>
+        <mdui:Description xml:lang="en">Rice University Identity Provider</mdui:Description>
+        <mdui:InformationURL xml:lang="en">http://www.rice.edu</mdui:InformationURL>
+        <mdui:PrivacyStatementURL xml:lang="en">https://policy.rice.edu/808</mdui:PrivacyStatementURL>
+        <mdui:Logo height="60" width="152" xml:lang="en">https://idp.rice.edu/idp/images/RiceLogo_small.png</mdui:Logo>
+      </mdui:UIInfo>
+    </Extensions>
+    <KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <!-- Serial No. 297520253078466742236117680757972564411364874694, expires on Mon Oct 29 19:56:31 2029 GMT -->
+          <ds:X509Certificate>
+MIIDGzCCAgOgAwIBAgIUNB1FAd9Ux2knx5u0LT/2TS1LGcYwDQYJKoZIhvcNAQEF
+BQAwFzEVMBMGA1UEAxMMaWRwLnJpY2UuZWR1MB4XDTA5MTAyOTE5NTYzMVoXDTI5
+MTAyOTE5NTYzMVowFzEVMBMGA1UEAxMMaWRwLnJpY2UuZWR1MIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEAliD8WG6wXXuqN8dnBBSKBEa0fuwutw4biOSz
+HPN5OLFDH22c9jBFTdPg4ozxGM6x6n30LXVRjAsdx5mFvqWXXrdihpSs2d/VLSSt
+pDjJOOwc0mL+B7mB2zIqvHuJYyUKOaHAOxmjlQ2w74AzToragPQxgEFXkSNGi0TX
+Nl9vtBkuP4XXCnVZaOyNOH5GFYLIw0UjekXCUbUWWQ7YkoZsA/rSgMctM1duiWq6
+cbI9bpl5GPd4Jc1z7c2QYOZYSvrRWnvJWtV1/3rlMfIWSra7FnMCk8OsWgqyozN5
+KGTt/F59qnkVHTp40O2NjqqRGyyZrXxy1TvXNqvglQJDeNuKxQIDAQABo18wXTA8
+BgNVHREENTAzggxpZHAucmljZS5lZHWGI2h0dHBzOi8vaWRwLnJpY2UuZWR1L2lk
+cC9zaGliYm9sZXRoMB0GA1UdDgQWBBT5ap3rsIH4qpnJk9rKCDdZCxGVdzANBgkq
+hkiG9w0BAQUFAAOCAQEAMI6twrzu3GVsqLcEXvgzomE4NqUjHqLn9LfV7Kts87gE
+7SedxD1UpGke9y/ca5AjwOaJeUdqAgbfD4jNIccpwht4kEZL8ZlBBIkx5fcPJ3uO
+Aj26/fg1C2/JlOFitYP/wsHJGJhPjtK3lRxfXGa+NQzrX8f+9qyLWhwza1CV1Cus
+v+P0jZo3wAfCgA7hw84PHU/Az7nB9sawg2s082B0QKpMfeIjtrmWlRqyZiUxOpyC
+u6hryK6pnoO5TWNzyFnOZq8oNpXi+6+ulfu6Gf8ENofwnhxtj30Drh/uzGjJfwhb
+YGiGeQcYxxiDQvtt3hzYv/pHQ1/6svEiUxzRpwvC7Q==
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.rice.edu/idp/profile/SAML2/Redirect/SLO"/>
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.rice.edu/idp/profile/SAML2/POST/SLO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.rice.edu/idp/profile/SAML2/Redirect/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.rice.edu/idp/profile/SAML2/POST/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://idp.rice.edu/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+    <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://idp.rice.edu/idp/profile/Shibboleth/SSO"/>
+  </IDPSSODescriptor>
+  <Organization>
+    <OrganizationName xml:lang="en">Rice University</OrganizationName>
+    <OrganizationDisplayName xml:lang="en">Rice University</OrganizationDisplayName>
+    <OrganizationURL xml:lang="en">http://www.rice.edu/</OrganizationURL>
+  </Organization>
+  <ContactPerson contactType="technical">
+    <GivenName>Paul Engle</GivenName>
+    <EmailAddress>pengle@rice.edu</EmailAddress>
+  </ContactPerson>
+  <ContactPerson contactType="administrative">
+    <GivenName>Dean Lane</GivenName>
+    <EmailAddress>dlane@rice.edu</EmailAddress>
+  </ContactPerson>
+  <ContactPerson contactType="support">
+    <GivenName>OIT Help Desk</GivenName>
+    <EmailAddress>helpdesk@rice.edu</EmailAddress>
+  </ContactPerson>
+</EntityDescriptor>

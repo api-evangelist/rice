@@ -1,0 +1,323 @@
+openapi: 3.2.0
+info:
+  title: Rice Kinder Institute Urban Data Platform Datasets API
+  version: '2026-09-01'
+  summary: Public read API behind the Kinder Institute Urban Data Platform dataset catalog.
+  description: 'The Urban Data Platform (UDP) is operated by the Kinder Institute for Urban Research at
+
+    Rice University.'
+  contact:
+    name: Kinder Institute for Urban Research, Rice University
+    url: https://kinder.rice.edu/initiative/urban-data-platform
+  x-operator: institution
+  x-provenance:
+    generated: '2026-09-01'
+    method: probed
+    source: Live unauthenticated HTTP probes of https://lg4tooqkr1.execute-api.us-east-1.amazonaws.com/prod/ on 2026-09-01, plus the production base URL literal read from the platform's own JavaScript bundle at https://www.kinderudp.org/js/app.9647dfb4.js. No credentials were used and no access control was defeated; every endpoint described here answers an anonymous GET.
+servers:
+- url: https://lg4tooqkr1.execute-api.us-east-1.amazonaws.com/prod
+  description: Production API Gateway stage, read from the platform's own app bundle.
+- url: https://5l498ma30i.execute-api.us-east-1.amazonaws.com/dev
+  description: Development stage, also named in the app bundle. Present for completeness; not probed and not intended for consumers.
+  x-status: non-production
+security: []
+tags:
+- name: Datasets
+  description: The public dataset catalog of the Urban Data Platform.
+paths:
+  /datasets:
+    get:
+      operationId: listDatasets
+      tags:
+      - Datasets
+      summary: List every publicly visible dataset in the catalog
+      description: Returns the full catalog as a single unpaginated JSON array. 431 dataset summaries (354,891 bytes) were returned on 2026-09-01. There is no observed pagination, filtering or query parameter — the client filters in the browser.
+      security: []
+      responses:
+        '200':
+          description: The complete catalog.
+          headers:
+            access-control-allow-origin:
+              schema:
+                type: string
+                const: '*'
+              description: Observed as `*`; the catalog is readable cross-origin by any page.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatasetSummary'
+              examples:
+                firstRecord:
+                  externalValue: ../examples/rice-kinder-udp-datasets-example.json
+  /datasets/{datasetId}:
+    get:
+      operationId: getDataset
+      tags:
+      - Datasets
+      summary: Retrieve the full catalog record for one dataset
+      security: []
+      parameters:
+      - name: datasetId
+        in: path
+        required: true
+        description: The opaque 12-character catalog identifier, e.g. `g79ekp1m5xyq`.
+        schema:
+          type: string
+          pattern: ^[a-z0-9]{12}$
+          examples:
+          - g79ekp1m5xyq
+      responses:
+        '200':
+          description: The dataset record. NOTE — an unknown datasetId ALSO returns HTTP 200, with a raw AWS Lambda runtime error body instead of a record. See errors/rice-errors.yml. A client must inspect the body, not the status.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/DatasetDetail'
+                - $ref: '#/components/schemas/LambdaRuntimeError'
+              examples:
+                dataset:
+                  externalValue: ../examples/rice-kinder-udp-dataset-detail-example.json
+  /datasets/{datasetId}/vrde:
+    get:
+      operationId: getDatasetVrde
+      tags:
+      - Datasets
+      summary: Retrieve the dataset record with its Virtual Research Data Environment location
+      description: Same record as /datasets/{datasetId} plus `folderPathMulti`, the path at which the dataset is mounted inside the Kinder Institute's Virtual Research Data Environment (VRDE) for approved researchers.
+      security: []
+      parameters:
+      - name: datasetId
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[a-z0-9]{12}$
+      responses:
+        '200':
+          description: The dataset record with a VRDE folder path.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/DatasetDetail'
+                - type: object
+                  properties:
+                    folderPathMulti:
+                      type: string
+                      description: VRDE mount path, of the form 'Inside VRDE- K:\Library\Harris\Environment\...'.
+  /user/catalog:
+    get:
+      operationId: getUserCatalog
+      tags:
+      - Datasets
+      summary: The signed-in member's view of the catalog
+      description: Requires an authenticated platform member. Anonymous requests return 401 `{"message":"Unauthorized"}`. The authentication scheme is not publicly documented; the app registers members at https://www.kinderudp.org/#/register. NOT PROBED beyond the anonymous 401 — no credentials were used.
+      responses:
+        '401':
+          description: '`{"message":"Unauthorized"}` — observed for an anonymous request.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizerError'
+components:
+  schemas:
+    AuthorizerError:
+      type: object
+      properties:
+        message:
+          type: string
+          examples:
+          - Unauthorized
+          - Missing Authentication Token
+    DatasetDetail:
+      allOf:
+      - $ref: '#/components/schemas/DatasetSummary'
+      - type: object
+        properties:
+          fullDescription:
+            type:
+            - string
+            - 'null'
+            description: HTML-bearing prose (contains <br> markup).
+          doi:
+            type:
+            - string
+            - 'null'
+            description: DataCite DOI. Observed values sit under prefix 10.25612, registered to DataCite client RICE.KINDER.
+            examples:
+            - 10.25612/837.16MO4PKRWM20
+          dataciteName:
+            type:
+            - string
+            - 'null'
+          geoResolution:
+            type:
+            - string
+            - 'null'
+          tabularResolution:
+            type:
+            - string
+            - 'null'
+          updateFreq:
+            type:
+            - string
+            - 'null'
+          versionNo:
+            type:
+            - string
+            - 'null'
+          released:
+            type:
+            - string
+            - 'null'
+          isInGdb:
+            type:
+            - boolean
+            - 'null'
+          isHiddenFromPublic:
+            type:
+            - boolean
+            - 'null'
+          originalDataCitation:
+            type:
+            - string
+            - 'null'
+          paperCitation:
+            type:
+            - string
+            - 'null'
+          suggestedCitation:
+            type:
+            - string
+            - 'null'
+            description: 'Citation string naming the publisher. Observed values name "Rice University-Kinder Institute: UDP" — the API''s own attestation of its operator.'
+          relatedDatasets:
+            type: array
+            items:
+              type: object
+              properties:
+                relationType:
+                  type: string
+                  description: A DataCite RelationType term; see the `dataciteRelationType` lookup.
+                id:
+                  type: string
+    LambdaRuntimeError:
+      type: object
+      description: A raw AWS Lambda runtime failure, returned with HTTP 200. This is a defect, recorded as observed. It is what an unknown datasetId produces.
+      properties:
+        errorMessage:
+          type: string
+        errorType:
+          type: string
+        requestId:
+          type: string
+        stackTrace:
+          type: array
+          items:
+            type: string
+    DatasetSummary:
+      type: object
+      description: One row of the public catalog listing.
+      required:
+      - id
+      - udpName
+      - category
+      - accessRestriction
+      - status
+      - isInUdp
+      properties:
+        id:
+          type: string
+          description: Opaque catalog identifier.
+          examples:
+          - g79ekp1m5xyq
+        udpName:
+          type: string
+          description: Dataset title as curated by the UDP.
+        shortDescription:
+          type:
+          - string
+          - 'null'
+        accessRestriction:
+          type: string
+          enum:
+          - Available to all members
+          - Available to Affiliated Users Only
+          - Authorization required
+        status:
+          type: string
+          description: Curation state; see the `status` lookup for the full 8-term enumeration.
+        source:
+          type:
+          - string
+          - 'null'
+          description: Originating data provider
+          e.g. TCEQ: null
+          Census Bureau.: null
+        category:
+          type: string
+          enum:
+          - Census/ACS
+          - Crime
+          - Economy
+          - Education
+          - Environment
+          - Health
+          - Housing
+          - Infrastructure
+          - Surveys
+          - Land Use
+          - Other
+          - Reference
+          - Resources
+          - Tax Assessor
+        isGeocoded:
+          type: boolean
+        geoExtent:
+          type:
+          - string
+          - 'null'
+          description: Geographic coverage; see the `geoExtent` lookup (27 terms).
+        isInUdp:
+          type: boolean
+          description: Whether the data itself is loaded into the platform.
+        isDownloadable:
+          type: boolean
+        keywords:
+          type:
+          - string
+          - 'null'
+          description: Semicolon-delimited keyword string
+          not an array.: null
+        earliestDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        latestDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        specificYears:
+          type:
+          - string
+          - 'null'
+        releaseDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        lastModifiedDatetime:
+          type:
+          - integer
+          - 'null'
+          description: Epoch milliseconds.
+  securitySchemes:
+    memberSession:
+      type: http
+      scheme: bearer
+      description: Undocumented. Inferred only from the API Gateway authorizer's 401 envelope on /user/catalog. Not verified — no credentials were obtained or used.

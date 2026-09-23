@@ -1,0 +1,55 @@
+openapi: 3.2.0
+info:
+  title: Rice Kinder Institute Urban Data Platform Reference API
+  version: '2026-09-01'
+  summary: Public read API behind the Kinder Institute Urban Data Platform dataset catalog.
+  description: 'The Urban Data Platform (UDP) is operated by the Kinder Institute for Urban Research at
+
+    Rice University.'
+  contact:
+    name: Kinder Institute for Urban Research, Rice University
+    url: https://kinder.rice.edu/initiative/urban-data-platform
+  x-operator: institution
+  x-provenance:
+    generated: '2026-09-01'
+    method: probed
+    source: Live unauthenticated HTTP probes of https://lg4tooqkr1.execute-api.us-east-1.amazonaws.com/prod/ on 2026-09-01, plus the production base URL literal read from the platform's own JavaScript bundle at https://www.kinderudp.org/js/app.9647dfb4.js. No credentials were used and no access control was defeated; every endpoint described here answers an anonymous GET.
+servers:
+- url: https://lg4tooqkr1.execute-api.us-east-1.amazonaws.com/prod
+  description: Production API Gateway stage, read from the platform's own app bundle.
+- url: https://5l498ma30i.execute-api.us-east-1.amazonaws.com/dev
+  description: Development stage, also named in the app bundle. Present for completeness; not probed and not intended for consumers.
+  x-status: non-production
+security: []
+tags:
+- name: Reference
+  description: Controlled vocabularies the catalog's fields draw from.
+paths:
+  /lookups:
+    get:
+      operationId: getLookups
+      tags:
+      - Reference
+      summary: Retrieve every controlled vocabulary the catalog uses
+      description: Returns 27 named enumerations in one object, including `dataciteRelationType` (the 27 DataCite RelationType terms), `iso19115TopicCategory` (the 19 ISO 19115 topic categories) and `regulatoryLaws` (FERPA, FISMA, HIPAA, HUD, None). See vocabulary/rice-kinder-udp-vocabulary.yml.
+      security: []
+      responses:
+        '200':
+          description: The vocabulary bundle (5,339 bytes on 2026-09-01).
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+              examples:
+                lookups:
+                  externalValue: ../examples/rice-kinder-udp-lookups-example.json
+components:
+  securitySchemes:
+    memberSession:
+      type: http
+      scheme: bearer
+      description: Undocumented. Inferred only from the API Gateway authorizer's 401 envelope on /user/catalog. Not verified — no credentials were obtained or used.
