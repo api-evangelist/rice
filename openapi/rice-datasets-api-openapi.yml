@@ -204,20 +204,6 @@ components:
                   description: A DataCite RelationType term; see the `dataciteRelationType` lookup.
                 id:
                   type: string
-    LambdaRuntimeError:
-      type: object
-      description: A raw AWS Lambda runtime failure, returned with HTTP 200. This is a defect, recorded as observed. It is what an unknown datasetId produces.
-      properties:
-        errorMessage:
-          type: string
-        errorType:
-          type: string
-        requestId:
-          type: string
-        stackTrace:
-          type: array
-          items:
-            type: string
     DatasetSummary:
       type: object
       description: One row of the public catalog listing.
@@ -316,6 +302,20 @@ components:
           - integer
           - 'null'
           description: Epoch milliseconds.
+    LambdaRuntimeError:
+      type: object
+      description: A raw AWS Lambda runtime failure, returned with HTTP 200. This is a defect, recorded as observed. It is what an unknown datasetId produces.
+      properties:
+        errorMessage:
+          type: string
+        errorType:
+          type: string
+        requestId:
+          type: string
+        stackTrace:
+          type: array
+          items:
+            type: string
   securitySchemes:
     memberSession:
       type: http
