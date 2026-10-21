@@ -1,0 +1,41 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/rice-datasets-api-openapi.yml
+- openapi/rice-reference-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: 'No MCP server was found. The pre-flight posted tools/list to /mcp on 5l498ma30i.execute-api.us-east-1.amazonaws.com, api.datacite.org,
+  api.ror.org, api.rice.edu; verdict opaque (https://5l498ma30i.execute-api.us-east-1.amazonaws.com/mcp answered 403: the edge authenticates before
+  it routes, which proves nothing either way). Candidate tools below are derived from the 5 operation(s) in the provider''s own OpenAPI (5 listed);
+  they describe what a server WOULD expose, not one that exists.'
+tools:
+- name: list_datasets
+  operationId: listDatasets
+  method: GET
+  path: /datasets
+  description: List every publicly visible dataset in the catalog
+- name: get_lookups
+  operationId: getLookups
+  method: GET
+  path: /lookups
+  description: Retrieve every controlled vocabulary the catalog uses
+- name: get_dataset
+  operationId: getDataset
+  method: GET
+  path: /datasets/{datasetId}
+  description: Retrieve the full catalog record for one dataset
+- name: get_dataset_vrde
+  operationId: getDatasetVrde
+  method: GET
+  path: /datasets/{datasetId}/vrde
+  description: Retrieve the dataset record with its Virtual Research Data Environment location
+- name: get_user_catalog
+  operationId: getUserCatalog
+  method: GET
+  path: /user/catalog
+  description: The signed-in member's view of the catalog

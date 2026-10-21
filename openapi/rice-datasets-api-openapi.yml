@@ -5,7 +5,41 @@ info:
   summary: Public read API behind the Kinder Institute Urban Data Platform dataset catalog.
   description: 'The Urban Data Platform (UDP) is operated by the Kinder Institute for Urban Research at
 
-    Rice University.'
+    Rice University. It is the only institution-operated, publicly callable JSON API found on
+
+    Rice''s public surface: an AWS API Gateway fronting Lambda handlers that serve the
+
+    platform''s dataset catalog to the Vue single-page application at https://www.kinderudp.org/.
+
+
+    THIS DOCUMENT IS NOT PUBLISHED BY RICE UNIVERSITY. Rice publishes no OpenAPI, no
+
+    developer portal and no written reference for this API. Every path, parameter, response
+
+    shape and status code below was recorded from live unauthenticated probes on 2026-09-01
+
+    and is described exactly as observed, including the defects. Where behaviour is wrong
+
+    (see /datasets/{datasetId} 200-on-error) it is documented as wrong, not corrected.
+
+
+    Operator attribution: institution. The host is AWS infrastructure rather than a
+
+    rice.edu name, so a hostname-only verdict cannot see this. It is Rice''s own engineering
+
+    on three independent signals — (1) the API''s own `suggestedCitation` field names
+
+    "Rice University-Kinder Institute: UDP" as the publisher, (2) Rice''s Kinder Institute
+
+    endorses and links the platform from its own domain at
+
+    https://kinder.rice.edu/initiative/urban-data-platform, and (3) datasets carry DOIs under
+
+    prefix 10.25612, a DataCite prefix registered to DataCite client RICE.KINDER
+
+    ("Kinder Institute Urban Data Platform") under DataCite member `rice`
+
+    ("Fondren Library, Rice University", ROR https://ror.org/008zs3103).'
   contact:
     name: Kinder Institute for Urban Research, Rice University
     url: https://kinder.rice.edu/initiative/urban-data-platform
@@ -124,6 +158,14 @@ paths:
                 $ref: '#/components/schemas/AuthorizerError'
 components:
   schemas:
+    AuthorizerError:
+      type: object
+      properties:
+        message:
+          type: string
+          examples:
+          - Unauthorized
+          - Missing Authentication Token
     LambdaRuntimeError:
       type: object
       description: A raw AWS Lambda runtime failure, returned with HTTP 200. This is a defect, recorded as observed. It is what an unknown datasetId produces.
@@ -138,6 +180,78 @@ components:
           type: array
           items:
             type: string
+    DatasetDetail:
+      allOf:
+      - $ref: '#/components/schemas/DatasetSummary'
+      - type: object
+        properties:
+          fullDescription:
+            type:
+            - string
+            - 'null'
+            description: HTML-bearing prose (contains <br> markup).
+          doi:
+            type:
+            - string
+            - 'null'
+            description: DataCite DOI. Observed values sit under prefix 10.25612, registered to DataCite client RICE.KINDER.
+            examples:
+            - 10.25612/837.16MO4PKRWM20
+          dataciteName:
+            type:
+            - string
+            - 'null'
+          geoResolution:
+            type:
+            - string
+            - 'null'
+          tabularResolution:
+            type:
+            - string
+            - 'null'
+          updateFreq:
+            type:
+            - string
+            - 'null'
+          versionNo:
+            type:
+            - string
+            - 'null'
+          released:
+            type:
+            - string
+            - 'null'
+          isInGdb:
+            type:
+            - boolean
+            - 'null'
+          isHiddenFromPublic:
+            type:
+            - boolean
+            - 'null'
+          originalDataCitation:
+            type:
+            - string
+            - 'null'
+          paperCitation:
+            type:
+            - string
+            - 'null'
+          suggestedCitation:
+            type:
+            - string
+            - 'null'
+            description: 'Citation string naming the publisher. Observed values name "Rice University-Kinder Institute: UDP" — the API''s own attestation of its operator.'
+          relatedDatasets:
+            type: array
+            items:
+              type: object
+              properties:
+                relationType:
+                  type: string
+                  description: A DataCite RelationType term; see the `dataciteRelationType` lookup.
+                id:
+                  type: string
     DatasetSummary:
       type: object
       description: One row of the public catalog listing.
@@ -236,86 +350,6 @@ components:
           - integer
           - 'null'
           description: Epoch milliseconds.
-    AuthorizerError:
-      type: object
-      properties:
-        message:
-          type: string
-          examples:
-          - Unauthorized
-          - Missing Authentication Token
-    DatasetDetail:
-      allOf:
-      - $ref: '#/components/schemas/DatasetSummary'
-      - type: object
-        properties:
-          fullDescription:
-            type:
-            - string
-            - 'null'
-            description: HTML-bearing prose (contains <br> markup).
-          doi:
-            type:
-            - string
-            - 'null'
-            description: DataCite DOI. Observed values sit under prefix 10.25612, registered to DataCite client RICE.KINDER.
-            examples:
-            - 10.25612/837.16MO4PKRWM20
-          dataciteName:
-            type:
-            - string
-            - 'null'
-          geoResolution:
-            type:
-            - string
-            - 'null'
-          tabularResolution:
-            type:
-            - string
-            - 'null'
-          updateFreq:
-            type:
-            - string
-            - 'null'
-          versionNo:
-            type:
-            - string
-            - 'null'
-          released:
-            type:
-            - string
-            - 'null'
-          isInGdb:
-            type:
-            - boolean
-            - 'null'
-          isHiddenFromPublic:
-            type:
-            - boolean
-            - 'null'
-          originalDataCitation:
-            type:
-            - string
-            - 'null'
-          paperCitation:
-            type:
-            - string
-            - 'null'
-          suggestedCitation:
-            type:
-            - string
-            - 'null'
-            description: 'Citation string naming the publisher. Observed values name "Rice University-Kinder Institute: UDP" — the API''s own attestation of its operator.'
-          relatedDatasets:
-            type: array
-            items:
-              type: object
-              properties:
-                relationType:
-                  type: string
-                  description: A DataCite RelationType term; see the `dataciteRelationType` lookup.
-                id:
-                  type: string
   securitySchemes:
     memberSession:
       type: http

@@ -5,7 +5,41 @@ info:
   summary: Public read API behind the Kinder Institute Urban Data Platform dataset catalog.
   description: 'The Urban Data Platform (UDP) is operated by the Kinder Institute for Urban Research at
 
-    Rice University.'
+    Rice University. It is the only institution-operated, publicly callable JSON API found on
+
+    Rice''s public surface: an AWS API Gateway fronting Lambda handlers that serve the
+
+    platform''s dataset catalog to the Vue single-page application at https://www.kinderudp.org/.
+
+
+    THIS DOCUMENT IS NOT PUBLISHED BY RICE UNIVERSITY. Rice publishes no OpenAPI, no
+
+    developer portal and no written reference for this API. Every path, parameter, response
+
+    shape and status code below was recorded from live unauthenticated probes on 2026-09-01
+
+    and is described exactly as observed, including the defects. Where behaviour is wrong
+
+    (see /datasets/{datasetId} 200-on-error) it is documented as wrong, not corrected.
+
+
+    Operator attribution: institution. The host is AWS infrastructure rather than a
+
+    rice.edu name, so a hostname-only verdict cannot see this. It is Rice''s own engineering
+
+    on three independent signals — (1) the API''s own `suggestedCitation` field names
+
+    "Rice University-Kinder Institute: UDP" as the publisher, (2) Rice''s Kinder Institute
+
+    endorses and links the platform from its own domain at
+
+    https://kinder.rice.edu/initiative/urban-data-platform, and (3) datasets carry DOIs under
+
+    prefix 10.25612, a DataCite prefix registered to DataCite client RICE.KINDER
+
+    ("Kinder Institute Urban Data Platform") under DataCite member `rice`
+
+    ("Fondren Library, Rice University", ROR https://ror.org/008zs3103).'
   contact:
     name: Kinder Institute for Urban Research, Rice University
     url: https://kinder.rice.edu/initiative/urban-data-platform

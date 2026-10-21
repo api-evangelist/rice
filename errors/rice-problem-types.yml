@@ -1,0 +1,21 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/rice-datasets-api-openapi.yml
+- openapi/rice-reference-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: AuthorizerError
+coverage:
+  operations: 5
+  statuses_declared: 1
+problems:
+- status: 401
+  title: Unauthorized
+  description: '`{"message":"Unauthorized"}` — observed for an anonymous request.'
+  operations: 1
+  media_types:
+  - application/json
+  schema: AuthorizerError

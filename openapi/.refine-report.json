@@ -1,7 +1,7 @@
 {
   "provider": "rice",
   "sources": [
-    "_original/rice-kinder-udp-openapi.yml"
+    "_ae-authored/rice-kinder-udp-openapi.yml"
   ],
   "outputs": [
     "rice-datasets-api-openapi.yml",
@@ -12,12 +12,12 @@
   "warnings": [],
   "notes": [
     "1 archived document(s) dropped as subsets of other archived documents",
-    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "rice-kinder-udp-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
   "skipped": [
-    "_original/rice-kinder-udp-openapi_2.yml: archived document superseded by a larger archived document",
+    "_ae-authored/rice-kinder-udp-openapi_2.yml: archived document superseded by a larger archived document",
     "rice-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rice-reference-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]

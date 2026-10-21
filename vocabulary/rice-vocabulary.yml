@@ -1,0 +1,38 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/rice-datasets-api-openapi.yml
+- openapi/rice-reference-api-openapi.yml
+vocabulary:
+  name: Rice University Domain Vocabulary
+  description: 'Terms declared by Rice University''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-20'
+  terms:
+  - term: Datasets
+    definition: The public dataset catalog of the Urban Data Platform.
+    tags:
+    - Resource Group
+    source: openapi/rice-datasets-api-openapi.yml
+  - term: Reference
+    definition: Controlled vocabularies the catalog's fields draw from.
+    tags:
+    - Resource Group
+    source: openapi/rice-reference-api-openapi.yml
+  - term: LambdaRuntimeError
+    definition: A raw AWS Lambda runtime failure, returned with HTTP 200. This is a defect, recorded as observed. It is what an unknown datasetId
+      produces.
+    tags:
+    - Object
+    source: openapi/rice-datasets-api-openapi.yml#/components/schemas/LambdaRuntimeError
+  - term: DatasetSummary
+    definition: One row of the public catalog listing.
+    tags:
+    - Object
+    source: openapi/rice-datasets-api-openapi.yml#/components/schemas/DatasetSummary
+  - term: AuthorizerError
+    definition: 'Object declared by the contract with fields: message.'
+    tags:
+    - Object
+    source: openapi/rice-datasets-api-openapi.yml#/components/schemas/AuthorizerError

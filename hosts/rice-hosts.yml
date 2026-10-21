@@ -1,0 +1,389 @@
+generated: '2026-10-20'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 36
+  own: 25
+  other_domain: 3
+  platform: 8
+  roles:
+  - api
+  - data
+  - legal
+  - other
+  - portal
+  - source
+  - status
+  - support
+  - website
+hosts:
+- host: 5l498ma30i.execute-api.us-east-1.amazonaws.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: amazonaws.com
+  role: other
+  relation: platform
+- host: access.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: admission.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: alumni.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: api.amazonaws.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: amazonaws.com
+  role: api
+  relation: platform
+- host: api.datacite.org
+  found_by:
+  - apis[]
+  - contract-discovery
+  types: []
+  serves:
+  - api
+  registrable_domain: datacite.org
+  role: api
+  relation: platform
+- host: api.rice.edu
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: api
+  relation: own
+- host: api.ror.org
+  found_by:
+  - apis[]
+  - contract-discovery
+  - vendor-detect
+  types: []
+  serves:
+  - api
+  - api-gateway
+  vendor: aws-api-gateway
+  registrable_domain: ror.org
+  role: api
+  relation: platform
+- host: arch.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: arts.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: brand.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: business.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: coronavirus.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: corporate.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: courses.rice.edu
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - well-known
+  types:
+  - CourseCatalog
+  serves:
+  - api
+  - docs
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: dar.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: data.rice.edu
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  types: []
+  serves: []
+  title: Home - DATA @ Rice
+  status: 200
+  registrable_domain: rice.edu
+  role: data
+  relation: own
+- host: dining.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: dou.rice.edu
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  - GitHub
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: idp.rice.edu
+  found_by:
+  - apis[]
+  - probed
+  - well-known
+  types: []
+  serves:
+  - api
+  - docs
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: kb.rice.edu
+  found_by:
+  - pointer
+  - probed
+  types:
+  - Support
+  serves: []
+  registrable_domain: rice.edu
+  role: support
+  relation: own
+- host: kinder.rice.edu
+  found_by:
+  - apis[]
+  - probed
+  - well-known
+  types: []
+  serves:
+  - docs
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: lg4tooqkr1.execute-api.us-east-1.amazonaws.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: amazonaws.com
+  role: other
+  relation: platform
+- host: library.rice.edu
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - well-known
+  types:
+  - LibraryCatalog
+  serves:
+  - docs
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: mdq.incommon.org
+  found_by:
+  - apis[]
+  - probed
+  - well-known
+  - vendor-detect
+  types: []
+  serves:
+  - api
+  - cdn
+  vendor: cloudfront
+  registrable_domain: incommon.org
+  role: other
+  relation: other-domain
+- host: policy.rice.edu
+  found_by:
+  - pointer
+  - probed
+  types:
+  - TermsOfService
+  serves: []
+  registrable_domain: rice.edu
+  role: legal
+  relation: own
+- host: portal.rice.edu
+  found_by:
+  - pointer
+  - docs-index
+  - vendor-detect
+  types:
+  - DeveloperPortal
+  serves:
+  - docs
+  - cdn
+  vendor: fastly
+  registrable_domain: rice.edu
+  role: portal
+  relation: own
+- host: repository.rice.edu
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - well-known
+  types:
+  - ResearchRepository
+  serves:
+  - api
+  - docs
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: researchcomputing.rice.edu
+  found_by:
+  - pointer
+  - probed
+  types:
+  - ResearchComputing
+  serves: []
+  registrable_domain: rice.edu
+  role: other
+  relation: own
+- host: ror.org
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - docs
+  registrable_domain: ror.org
+  role: other
+  relation: platform
+- host: spaces.at.internet2.edu
+  found_by:
+  - apis[]
+  - probed
+  - well-known
+  types: []
+  serves:
+  - docs
+  registrable_domain: internet2.edu
+  role: other
+  relation: other-domain
+- host: status.rice.edu
+  found_by:
+  - pointer
+  - probed
+  types:
+  - Status
+  serves: []
+  registrable_domain: rice.edu
+  role: status
+  relation: own
+- host: www.kinderudp.org
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - OpenData
+  serves: []
+  registrable_domain: kinderudp.org
+  role: other
+  relation: other-domain
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.rice.edu
+  found_by:
+  - pointer
+  - probed
+  types:
+  - Website
+  - PrivacyPolicy
+  serves: []
+  registrable_domain: rice.edu
+  role: website
+  relation: own

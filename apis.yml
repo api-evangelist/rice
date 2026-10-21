@@ -1,8 +1,12 @@
 ---
 aid: rice
+
 name: Rice University
+
 x-type: university
+
 x-category: Private Research University
+
 description: >-
   Rice University is a private research university in Houston, Texas. Its programmable
   footprint is small, and most of what appears to be Rice's is not: the Rice Research
@@ -20,7 +24,9 @@ description: >-
   There is no central developer portal, no llms.txt, no .well-known catalog, and the official
   RiceUniversity GitHub organization has zero public repositories; Rice's Center for Research
   Computing publishes separately at github.com/rice-crc.
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -32,6 +38,7 @@ deliveryModel:
   - probed
   generated: '2026-09-01'
   method: probed
+
 accessModel:
   pricing: free
   onboarding: unknown
@@ -44,10 +51,15 @@ accessModel:
   - probed
   generated: '2026-09-01'
   method: probed
+
 position: Consuming
+
 access: 3rd-Party
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rice.png
+
 url: https://raw.githubusercontent.com/api-evangelist/rice/refs/heads/main/apis.yml
+
 tags:
   - University
   - Higher Education
@@ -63,9 +75,13 @@ tags:
   - Identity Federation
   - Library
   - Urban Research
+
 created: '2026-06-03'
+
 modified: '2026-09-01'
+
 specificationVersion: '0.23'
+
 x-coverage:
   state: covered
   reason: covered
@@ -117,6 +133,87 @@ x-coverage:
   - url: https://www.rice.edu/.well-known/apis.json
     status: 406
     note: Absent, same not-found behaviour.
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+
+common:
+  - type: LLMsTxt
+    url: llms/rice-llms.txt
+  - type: DeveloperPortal
+    url: https://portal.rice.edu
+  - type: AgenticAccess
+    url: agentic-access/rice-agentic-access.yml
+  - type: Spectral
+    url: rules/rice-rules.yml
+  - type: JSONLD
+    url: json-ld/rice-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/rice-vocabulary.yml
+  - type: DataModel
+    url: data-model/rice-data-model.yml
+  - type: ErrorCatalog
+    url: errors/rice-problem-types.yml
+  - type: Conformance
+    url: conformance/rice-conformance.yml
+  - type: SecurityTxt
+    url: well-known/rice-status-security.txt
+  - type: WellKnown
+    url: well-known/rice-well-known.yml
+  - type: Hosts
+    url: hosts/rice-hosts.yml
+  - type: IntegrationEdges
+    url: integrations/rice-integration-edges.yml
+  - type: Vendors
+    url: vendors/rice-vendors.yml
+  - type: Website
+    url: https://www.rice.edu/
+  - type: OpenData
+    url: https://www.kinderudp.org/
+  - type: APIReference
+    url: openapi/_ae-authored/rice-kinder-udp-openapi.yml
+  - type: ResearchRepository
+    url: https://repository.rice.edu/
+  - type: LibraryCatalog
+    url: https://library.rice.edu/
+  - type: CourseCatalog
+    url: https://courses.rice.edu/
+  - type: IdentityFederation
+    url: identity-federation/rice-identity-federation.yml
+  - type: ResearchComputing
+    url: https://researchcomputing.rice.edu/
+  - type: GitHubOrganization
+    url: https://github.com/rice-crc
+  - type: GitHub
+    url: https://github.com/RiceUniversity
+  - type: Authentication
+    url: authentication/rice-authentication.yml
+  - type: Conformance
+    url: conformance/rice-education-standards-conformance.yml
+  - type: Errors
+    url: errors/rice-errors.yml
+  - type: PrivacyPolicy
+    url: https://www.rice.edu/privacy
+  - type: TermsOfService
+    url: https://policy.rice.edu/808
+  - type: Support
+    url: https://kb.rice.edu/
+  - type: Status
+    url: https://status.rice.edu/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/rice-university/
+  - type: DomainSecurity
+    url: security/rice-domain-security.yml
+  - type: Plans
+    url: plans/rice-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/rice-rate-limits.yml
+  - type: FinOps
+    url: finops/rice-finops.yml
+  - type: Review
+    url: review.yml
+
 apis:
 - aid: rice:sso-shibboleth
   name: Rice Shibboleth SAML 2.0 Identity Provider
@@ -358,53 +455,8 @@ apis:
     url: https://www.kinderudp.org/
   - type: Documentation
     url: https://kinder.rice.edu/initiative/urban-data-platform
-common:
-  - type: Website
-    url: https://www.rice.edu/
-  - type: OpenData
-    url: https://www.kinderudp.org/
-  - type: APIReference
-    url: openapi/_original/rice-kinder-udp-openapi.yml
-  - type: ResearchRepository
-    url: https://repository.rice.edu/
-  - type: LibraryCatalog
-    url: https://library.rice.edu/
-  - type: CourseCatalog
-    url: https://courses.rice.edu/
-  - type: IdentityFederation
-    url: identity-federation/rice-identity-federation.yml
-  - type: ResearchComputing
-    url: https://researchcomputing.rice.edu/
-  - type: GitHubOrganization
-    url: https://github.com/rice-crc
-  - type: GitHub
-    url: https://github.com/RiceUniversity
-  - type: Authentication
-    url: authentication/rice-authentication.yml
-  - type: Conformance
-    url: conformance/rice-education-standards-conformance.yml
-  - type: Errors
-    url: errors/rice-errors.yml
-  - type: PrivacyPolicy
-    url: https://www.rice.edu/privacy
-  - type: TermsOfService
-    url: https://policy.rice.edu/808
-  - type: Support
-    url: https://kb.rice.edu/
-  - type: Status
-    url: https://status.rice.edu/
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/rice-university/
-  - type: DomainSecurity
-    url: security/rice-domain-security.yml
-  - type: Plans
-    url: plans/rice-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/rice-rate-limits.yml
-  - type: FinOps
-    url: finops/rice-finops.yml
-  - type: Review
-    url: review.yml
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-10-20'
+  status: nochange
+  artifacts_added: 0
+  pass: local-v5
